@@ -77,6 +77,7 @@ const AuthForm = ({ onLogin }) => {
 
          
           localStorage.setItem("token", data.token); 
+          localStorage.setItem("userId", data.userId); 
           onLogin(data.token);
           navigate("/home");
         } else {
