@@ -24,7 +24,7 @@ const Header = () => {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("token");
-    
+
       if (!token) {
         navigate("/");
         return;
@@ -120,30 +120,30 @@ const Header = () => {
         </div>
 
         {/* Center Section */}
-{/* Center Section */}
-<div className="flex items-center justify-center w-1/3 cursor-pointer">
-  <button
-    onClick={() => navigate('/confirmedBets')}
-    className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-  >
-    Portfolio
-  </button>
-  <div className="bg-white space-x-3 rounded-lg p-2 flex items-center">
-    <img src={WalletLogo} alt="Wallet Logo" className="h-8" />
-    <div className="flex items-center">
-      <span className="ml-2 font-semibold text-black">
-        ₹{walletBalance}
-      </span>
-      <img src={DownArrowIcon} alt="Down Arrow" className="h-4 ml-1" />
-    </div>
-  </div>
-  <button
-    onClick={() => navigate('/completedBets')}
-    className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
-  >
-    Results
-  </button>
-</div>
+        {/* Center Section */}
+        <div className="flex items-center justify-center w-1/3 cursor-pointer">
+          <button
+            onClick={() => navigate('/confirmedBets')}
+            className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+          >
+            Portfolio
+          </button>
+          <div className="bg-white space-x-3 rounded-lg p-2 flex items-center" onClick={handleModalOpen}>
+            <img src={WalletLogo} alt="Wallet Logo" className="h-8" />
+            <div className="flex items-center">
+              <span className="ml-2 font-semibold text-black">
+                ₹{walletBalance}
+              </span>
+              <img src={DownArrowIcon} alt="Down Arrow" className="h-4 ml-1" />
+            </div>
+          </div>
+          <button
+            onClick={() => navigate('/completedBets')}
+            className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+          >
+            Results
+          </button>
+        </div>
 
 
         {/* Right Section */}
@@ -155,7 +155,7 @@ const Header = () => {
             className="h-14 cursor-pointer"
             onClick={toggleDropdown} // Handle dropdown toggle on click
           />
-        
+          
         </div>
 
         {/* Dropdown */}

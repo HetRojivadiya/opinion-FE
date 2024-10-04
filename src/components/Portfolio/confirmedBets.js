@@ -35,7 +35,7 @@ const ConfirmedBets = () => {
   return (
     
     <div className="container mx-auto p-6 ">
-      <h1 className="text-4xl font-bold mb-6 text-center text-gray-900">Your Confirmed Bets</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-gray-900 font-mono">Your Confirmed Bets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {bets.length === 0 ? (
           <div className="text-gray-600 ">No confirmed bets found.</div>

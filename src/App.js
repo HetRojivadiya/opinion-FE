@@ -17,32 +17,41 @@ const App = () => {
 
   const handleLogin = (token) => {
     localStorage.setItem('token', token);
-    navigate('/home'); 
+    navigate('/home');
   };
 
   const isAuthPage = location.pathname === "/";
 
-
   return (
-    <div className="App">
+    <div style={styles.appContainer}>
       {!isAuthPage && <Header />}
-     
-      <Routes>
-        <Route path="/" element={<AuthForm onLogin={handleLogin} />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/confirmedBets" element={<ConfirmedBets />} />
-        <Route path="/completedBets" element={<CompletedBets />} />
-
-        <Route path="/payment-successful" element={<PaymentSuccess />} />
-        <Route path="/payment-failed" element={<PaymentFailed/>} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/payment-successful" element={<PaymentSuccess />} />
-        <Route path="/payment-failed" element={<PaymentFailed />} />
-      </Routes>
-     
+      
+      <main style={styles.content}>
+        <Routes>
+          <Route path="/" element={<AuthForm onLogin={handleLogin} />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/confirmedBets" element={<ConfirmedBets />} />
+          <Route path="/completedBets" element={<CompletedBets />} />
+          <Route path="/payment-successful" element={<PaymentSuccess />} />
+          <Route path="/payment-failed" element={<PaymentFailed />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </main>
+      
       {!isAuthPage && <Footer />}
     </div>
   );
+};
+
+const styles = {
+  appContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh', // Ensures full viewport height
+  },
+  content: {
+    flex: 1, // This makes the content area expand to fill available space
+  },
 };
 
 export default App;
