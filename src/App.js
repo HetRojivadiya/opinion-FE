@@ -9,6 +9,7 @@ import ConfirmedBets from './components/Portfolio/confirmedBets.js';
 
 import PaymentSuccess from './components/Payment/PaymentSuccess.jsx';
 import PaymentFailed from './components/Payment/PaymentFailed.jsx';
+import CompletedBets from './components/Results/completedBets.js';
 
 const App = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/" element={<AuthForm onLogin={handleLogin} />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/confirmedBets" element={<ConfirmedBets />} />
+        <Route path="/completedBets" element={<CompletedBets />} />
 
         <Route path="/payment-successful" element={<PaymentSuccess />} />
         <Route path="/payment-failed" element={<PaymentFailed/>} />

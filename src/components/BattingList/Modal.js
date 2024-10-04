@@ -1,5 +1,4 @@
 import React from 'react';
-import betImage from "../../assets/Header/bet_placed.jpg";
 
 // Modal Component
 const Modal = ({ isOpen, onClose, onSubmit, option, price, imageUrl, loading, message }) => {
@@ -9,14 +8,14 @@ const Modal = ({ isOpen, onClose, onSubmit, option, price, imageUrl, loading, me
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg w-80">
         {loading ? (
-          <div className="flex flex-col justify-center   items-center space-y-4">
+          <div className="flex flex-col justify-center items-center space-y-4">
             <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-blue-500"></div>
             <p className="text-lg font-semibold text-blue-500">Placing your bet...</p>
           </div>
         ) : (
           <>
             <h2 className="text-lg font-semibold mb-2 text-center">Confirm Your Bet</h2>
-            <img src={imageUrl} alt="Bet image" className="w-full h-40 object-cover rounded-md mb-4" />
+            <img src={imageUrl} alt={`Bet on ${option}`} className="w-full h-40 object-cover rounded-md mb-4" />
             <p className="text-center mb-4">Are you sure you want to place a bet on <strong>{option}</strong> for <strong>{price}</strong>?</p>
             {message && <p className="text-center mb-4 text-red-500">{message}</p>} {/* Display message */}
             <div className="flex justify-between">

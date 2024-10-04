@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaUserCheck, FaUserTimes, FaDollarSign } from 'react-icons/fa';
+import { FaUserCheck, FaUserTimes, FaRupeeSign } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const ConfirmedBets = () => {
@@ -57,7 +57,7 @@ const ConfirmedBets = () => {
                     Opponent: <span className="font-bold">{bet.oppositeUserName}</span>
                   </span>
                   <span className="flex items-center ml-4">
-                    <FaDollarSign className="text-yellow-400 mr-1" />
+                    <FaRupeeSign className="text-yellow-400 mr-1" />
                     <span className="font-bold text-white">{bet.opponentBet}</span>
                   </span>
                 </div>

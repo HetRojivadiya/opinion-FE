@@ -11,7 +11,6 @@ const BattingList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // State for success modal
   const [selectedBet, setSelectedBet] = useState(null);
-  const [price, setPrice] = useState(null);
   const [betLoading, setBetLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -88,7 +87,7 @@ const BattingList = () => {
     // Logic to navigate to SeePlacedBets component
     // Assuming you're using react-router
     // window.location.href = '/About'; 
-    navigate('/about')
+    navigate('/confirmedBets')
     // Redirect to the placed bets page
   };
 

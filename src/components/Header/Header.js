@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WalletLogo from "../../assets/Header/wallte.png";
+import WalletLogo from "../../assets/Header/wallet.png";
 import AccountLogo from "../../assets/Header/account.png";
 import DownArrowIcon from "../../assets/Header/down-arrow.png";
 import CompanyLogo from "../../assets/Logo/logo.jpg";
@@ -11,7 +11,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [walletBalance, setWalletBalance] = useState(0);
   const [userDetails, setUserDetails] = useState({
-    fullname:'',
+    fullname: '',
     email: '',
     mobile: '',
   });
@@ -56,12 +56,8 @@ const Header = () => {
           setUserDetails({
             fullname: details.fullname,
             email: details.email,
-           
           });
           setWalletBalance(details.balance);  // Set wallet balance
-
-          console.log(details);
-
         } else {
           console.error("Invalid token", data);
           navigate("/");
@@ -124,20 +120,31 @@ const Header = () => {
         </div>
 
         {/* Center Section */}
-        <div
-          className="flex items-center justify-center w-1/3 cursor-pointer"
-          onClick={handleModalOpen}
-        >
-          <div className="bg-white space-x-3 rounded-lg p-2 flex items-center">
-            <img src={WalletLogo} alt="Wallet Logo" className="h-8" />
-            <div className="flex items-center">
-              <span className="ml-2 font-semibold text-black">
-                ₹{walletBalance}
-              </span>
-              <img src={DownArrowIcon} alt="Down Arrow" className="h-4 ml-1" />
-            </div>
-          </div>
-        </div>
+{/* Center Section */}
+<div className="flex items-center justify-center w-1/3 cursor-pointer">
+  <button
+    onClick={() => navigate('/confirmedBets')}
+    className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+  >
+    Portfolio
+  </button>
+  <div className="bg-white space-x-3 rounded-lg p-2 flex items-center">
+    <img src={WalletLogo} alt="Wallet Logo" className="h-8" />
+    <div className="flex items-center">
+      <span className="ml-2 font-semibold text-black">
+        ₹{walletBalance}
+      </span>
+      <img src={DownArrowIcon} alt="Down Arrow" className="h-4 ml-1" />
+    </div>
+  </div>
+  <button
+    onClick={() => navigate('/completedBets')}
+    className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+  >
+    Results
+  </button>
+</div>
+
 
         {/* Right Section */}
         <div className="relative flex items-center justify-end w-1/3">
@@ -148,27 +155,28 @@ const Header = () => {
             className="h-14 cursor-pointer"
             onClick={toggleDropdown} // Handle dropdown toggle on click
           />
+        
         </div>
-          {/* Dropdown */}
-          {isDropdownOpen && (
-            <div className="right-2 absolute mt-36  w-48 bg-white rounded-lg shadow-lg z-50">
-              <ul className="text-black">
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
-                  onClick={() => navigate('/profile')}
-                >
-                  Profile
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </li>
-              </ul>
-            </div>
-          )}
-       
+
+        {/* Dropdown */}
+        {isDropdownOpen && (
+          <div className="right-2 absolute mt-36 w-48 bg-white rounded-lg shadow-lg z-50">
+            <ul className="text-black">
+              <li
+                className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+                onClick={() => navigate('/profile')}
+              >
+                Profile
+              </li>
+              <li
+                className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </li>
+            </ul>
+          </div>
+        )}
       </header>
 
       {/* Main Modal for deposit/withdraw options */}
