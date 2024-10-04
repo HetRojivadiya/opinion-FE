@@ -15,7 +15,7 @@ const AboutPage = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:3001/check-token', {
+        const response = await fetch('http://localhost:3001/checkToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -37,7 +37,9 @@ const AboutPage = () => {
     };
 
     verifyToken();
-  }, [navigate]);
+  }, [navigate]); 
+
+ 
   return (
     <div className="p-4">
       
