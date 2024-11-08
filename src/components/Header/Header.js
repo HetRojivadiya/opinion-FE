@@ -162,12 +162,12 @@ const Header = () => {
         {isDropdownOpen && (
           <div className="right-2 absolute mt-36 w-48 bg-white rounded-lg shadow-lg z-50">
             <ul className="text-black">
-              <li
+              {/* <li
                 className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
                 onClick={() => navigate('/profile')}
               >
                 Profile
-              </li>
+              </li> */}
               <li
                 className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
                 onClick={handleLogout}

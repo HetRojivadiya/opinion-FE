@@ -115,14 +115,14 @@ const BattingList = () => {
                 onClick={() => handleBetClick(batting, 'YES', calculatePrice(batting.yes_odds))}
               >
                 Yes (₹{calculatePrice(batting.yes_odds)})
-                <span className="text-xs text-gray-300 block">Odds: {batting.yes_odds}</span>
+                
               </button>
               <button
                 className="relative bg-red-500 text-white px-8 py-1 rounded-lg shadow-md hover:bg-red-600 transition duration-300 text-sm"
                 onClick={() => handleBetClick(batting, 'NO', calculatePrice(batting.no_odds))}
               >
                 No (₹{calculatePrice(batting.no_odds)})
-                <span className="text-xs text-gray-300 block">Odds: {batting.no_odds}</span>
+                
               </button>
             </div>
           </li>
