@@ -50,45 +50,50 @@ const AuthForm = ({ onLogin }) => {
     return errors;
   };
 
-  // Handle form submission for login or signup
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/${isLogin ? "login" : "signup"}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email,
-              password,
-              ...(isLogin ? {} : { username, fullname }), // Add username and fullname during signup
-            }),
-          }
-        );
-        const data = await response.json();
-
-        if (response.ok) {
-          // Store the JWT token and navigate to home page
-
-         
-          localStorage.setItem("token", data.token); 
-          localStorage.setItem("userId", data.userId); 
-          onLogin(data.token);
-          navigate("/home");
-        } else {
-          setErrors({ form: data.message });
+ // Handle form submission for login or signup
+// In AuthForm
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+  } else {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/${isLogin ? "login" : "signup"}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+            ...(isLogin ? {} : { username, fullname }),
+          }),
         }
-      } catch (err) {
-        console.error("Error during form submission:", err);
-        setErrors({ form: "Internal server error" });
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+
+        // Define the target page based on admin credentials
+        const targetPage =
+          email === "admin@gmail.com" && password === "admin"
+            ? "/admin"
+            : "/home";
+
+        onLogin(data.token, targetPage);
+      } else {
+        setErrors({ form: data.message });
       }
+    } catch (err) {
+      console.error("Error during form submission:", err);
+      setErrors({ form: "Internal server error" });
     }
-  };
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
