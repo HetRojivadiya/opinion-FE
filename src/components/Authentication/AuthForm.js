@@ -16,7 +16,7 @@ const AuthForm = ({ onLogin }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3001/checkToken", {
+      fetch("https://opinion-be.onrender.com/checkToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
   } else {
     try {
       const response = await fetch(
-        `http://localhost:3001/${isLogin ? "login" : "signup"}`,
+        `https://opinion-be.onrender.com/${isLogin ? "login" : "signup"}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -10,7 +10,7 @@ const ConfirmedBets = () => {
   useEffect(() => {
     const userId = localStorage.getItem('userId');
 
-    fetch('http://localhost:3001/confirmedBets', {
+    fetch('https://opinion-be.onrender.com/confirmedBets', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

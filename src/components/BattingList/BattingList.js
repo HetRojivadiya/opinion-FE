@@ -18,7 +18,7 @@ const BattingList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/liveContest');
+        const response = await fetch('https://opinion-be.onrender.com/liveContest');
         if (!response.ok) {
           throw new Error('Failed to fetch live contests');
         }
@@ -54,7 +54,7 @@ const BattingList = () => {
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:3001/placeBet', {
+      const response = await fetch('https://opinion-be.onrender.com/placeBet', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

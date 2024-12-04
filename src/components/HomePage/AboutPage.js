@@ -13,7 +13,7 @@ const AboutPage = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:3001/checkToken', {
+        const response = await fetch('https://opinion-be.onrender.com/checkToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -31,7 +31,7 @@ const Header = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:3001/checkToken", {
+        const response = await fetch("https://opinion-be.onrender.com/checkToken", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const Header = () => {
         const data = await response.json();
         if (response.ok) {
           const detailsResponse = await fetch(
-            "http://localhost:3001/getUserDetails",
+            "https://opinion-be.onrender.com/getUserDetails",
             {
               method: "POST",
               headers: {
@@ -87,7 +87,7 @@ const Header = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/payment/create-order",
+        "https://opinion-be.onrender.com/payment/create-order",
         data
       );
       console.log(response.data);

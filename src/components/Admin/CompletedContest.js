@@ -14,7 +14,7 @@ const CompletedContests = () => {
   const fetchCompletedContests = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3001/completedContest');
+      const response = await axios.post('https://opinion-be.onrender.com/completedContest');
       setCompletedContests(response.data.completedContest);
       setError(null);
     } catch (error) {

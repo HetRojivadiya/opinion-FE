@@ -16,7 +16,7 @@ const CurrentContest = () => {
   const fetchContests = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3001/liveContest');
+      const response = await axios.get('https://opinion-be.onrender.com/liveContest');
       setContests(response.data);
       setError(null);
     } catch (error) {
@@ -39,7 +39,7 @@ const CurrentContest = () => {
 
   const handleOptionClick = async (option) => {
     try {
-      const response = await axios.post('http://localhost:3001/selectWinner', {
+      const response = await axios.post('https://opinion-be.onrender.com/selectWinner', {
         contestId: selectedContest,
         winnerOption: option,
       });

@@ -11,7 +11,7 @@ const CompletedBets = () => {
     const userId = localStorage.getItem('userId');
 
     // Fetch completed bets
-    fetch('http://localhost:3001/completedBets', {
+    fetch('https://opinion-be.onrender.com/completedBets', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
