@@ -16,7 +16,7 @@ const HomePage = () => {
       }
 
       try {
-        const response = await fetch('https://opinion-fe.onrender.com/checkToken', {
+        const response = await fetch('https://opinion-be.onrender.com/checkToken', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

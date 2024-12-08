@@ -13,7 +13,7 @@ const ManageUsers = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('https://opinion-fe.onrender.com/users');
+            const response = await axios.get('https://opinion-be.onrender.com/users');
             setUsers(response.data);
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -29,7 +29,7 @@ const ManageUsers = () => {
         const { userId, field } = editingField;
 
         try {
-            await axios.post('https://opinion-fe.onrender.com/manageusers', {
+            await axios.post('https://opinion-be.onrender.com/manageusers', {
                 userId,
                 field,
                 newValue: newFieldValue,

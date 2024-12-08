@@ -40,7 +40,7 @@ const Header = () => {
       }
 
       try {
-        const response = await fetch("https://opinion-fe.onrender.com/checkToken", {
+        const response = await fetch("https://opinion-be.onrender.com/checkToken", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const Header = () => {
         const data = await response.json();
         if (response.ok) {
           const detailsResponse = await fetch(
-            "https://opinion-fe.onrender.com/getUserDetails",
+            "https://opinion-be.onrender.com/getUserDetails",
             {
               method: "POST",
               headers: {
@@ -98,7 +98,7 @@ const Header = () => {
 
     try {
       const response = await axios.post(
-        "https://opinion-fe.onrender.com/payment/create-order",
+        "https://opinion-be.onrender.com/payment/create-order",
         data
       );
       console.log(response.data);
@@ -118,7 +118,7 @@ const Header = () => {
 
     try {
       const response = await axios.post(
-        "https://opinion-fe.onrender.com/withdraw",
+        "https://opinion-be.onrender.com/withdraw",
         data
       );
 

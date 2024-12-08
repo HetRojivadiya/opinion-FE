@@ -14,7 +14,7 @@ const GetAllCategories = () => {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('https://opinion-fe.onrender.com/getAllCategories/seeList');
+      const response = await axios.post('https://opinion-be.onrender.com/getAllCategories/seeList');
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -25,7 +25,7 @@ const GetAllCategories = () => {
   const handleUpdateCategories = async () => {
     setLoading(true);
     try {
-      await axios.post('https://opinion-fe.onrender.com/getAllCategories/');
+      await axios.post('https://opinion-be.onrender.com/getAllCategories/');
       fetchCategories();
     } catch (error) {
       console.error("Error updating categories:", error);

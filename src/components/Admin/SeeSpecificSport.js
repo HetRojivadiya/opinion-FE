@@ -21,7 +21,7 @@ const SeeSportsData = () => {
   const fetchSportsData = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('https://opinion-fe.onrender.com/getSpecificSports/', { key });
+      const response = await axios.post('https://opinion-be.onrender.com/getSpecificSports/', { key });
       setSportsData(response.data);
       await checkExistingContests();
     } catch (error) {
@@ -32,7 +32,7 @@ const SeeSportsData = () => {
 
   const checkExistingContests = async () => {
     try {
-      const response = await axios.post('https://opinion-fe.onrender.com/alreadyExist');
+      const response = await axios.post('https://opinion-be.onrender.com/alreadyExist');
       const existingIds = new Set(response.data);
       setExistingContests(existingIds);
     } catch (error) {
@@ -50,7 +50,7 @@ const SeeSportsData = () => {
   const submitContest = async () => {
     const { id,  sport_title, home_team, away_team } = selectedContest;
     try {
-      const response = await axios.post('https://opinion-fe.onrender.com/createContest', {
+      const response = await axios.post('https://opinion-be.onrender.com/createContest', {
         id,
         title,
         sports_key: key,
