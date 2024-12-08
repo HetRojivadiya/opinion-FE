@@ -1,15 +1,19 @@
 import React from 'react';
-import DepositImage from "../../assets/Header/deposite_withdraw.jpg"; // Move image import here
+import DepositImage from "../../assets/Header/deposite_withdraw.jpg"; // Image import
 
 const Modal = ({ 
   isOpen, 
   onClose, 
   title, 
-  type, // type prop to differentiate between modals
+  type, // Type prop to differentiate modals
   depositAmount, 
   setDepositAmount, 
   handleDepositModalOpen, 
-  handlePayment 
+  handlePayment,
+  handleWithdrawModalOpen,
+  withdrawAmount,
+  setWithdrawAmount,
+  handleWithdraw
 }) => {
   if (!isOpen) return null;
 
@@ -18,14 +22,11 @@ const Modal = ({
       case 'depositWithdraw':
         return (
           <div className="flex flex-col items-center">
-            {/* Displaying the image */}
             <img
               src={DepositImage}
               alt="Deposit and Withdraw"
               className="mb-4 w-full rounded-lg"
             />
-
-            {/* Deposit and Withdraw buttons */}
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mb-2 w-full"
               onClick={handleDepositModalOpen}
@@ -34,7 +35,7 @@ const Modal = ({
             </button>
             <button
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 w-full"
-              onClick={() => alert("Withdraw Functionality")}
+              onClick={handleWithdrawModalOpen}
             >
               Withdraw
             </button>
@@ -58,6 +59,27 @@ const Modal = ({
               disabled={depositAmount < 50 || depositAmount > 1000}
             >
               Pay ₹{depositAmount}
+            </button>
+          </div>
+        );
+      case 'enterWithdrawAmount':
+        return (
+          <div className="flex flex-col items-center">
+            <input
+              type="number"
+              min="50"
+              max="1000"
+              value={withdrawAmount}
+              onChange={(e) => setWithdrawAmount(Number(e.target.value))}
+              placeholder="Enter withdrawal amount (50 - 1000)"
+              className="border p-2 mb-4 w-full rounded"
+            />
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 mb-2 w-full"
+              onClick={handleWithdraw}
+              disabled={withdrawAmount < 50 || withdrawAmount > 1000}
+            >
+              Withdraw ₹{withdrawAmount}
             </button>
           </div>
         );

@@ -6,6 +6,7 @@ import CompanyLogo from "../../assets/Logo/logo.jpg";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Modal from "../Header/Modal"; // Modal Component
+import refundImage from '../../assets/Payment/Refund.jpeg';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,9 +17,17 @@ const Header = () => {
     mobile: '',
   });
   const [depositModalOpen, setDepositModalOpen] = useState(false);
+  const [withdrawModalOpen, setWithdrawModalOpen] = useState(false);
   const [depositAmount, setDepositAmount] = useState(null);
+  const [withdrawAmount, setWithdrawAmount] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+
+  const [isModalWithdrawOpen, setIsModalWithdrawOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [loadingModalOpen, setLoadingModalOpen] = useState(false);
+
+
 
   // Fetch user details when component is mounted
   useEffect(() => {
@@ -31,7 +40,7 @@ const Header = () => {
       }
 
       try {
-        const response = await fetch("https://opinion-be.onrender.com/checkToken", {
+        const response = await fetch("https://opinion-fe.onrender.com/checkToken", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -42,7 +51,7 @@ const Header = () => {
         const data = await response.json();
         if (response.ok) {
           const detailsResponse = await fetch(
-            "https://opinion-be.onrender.com/getUserDetails",
+            "https://opinion-fe.onrender.com/getUserDetails",
             {
               method: "POST",
               headers: {
@@ -76,6 +85,8 @@ const Header = () => {
   const handleModalClose = () => setIsModalOpen(false);
   const handleDepositModalOpen = () => setDepositModalOpen(true);
   const handleDepositModalClose = () => setDepositModalOpen(false);
+  const handleWithdrawModalOpen = () => setWithdrawModalOpen(true);
+  const handleWithdrawModalClose = () => setWithdrawModalOpen(false);
 
   // Handle payment process
   const handlePayment = async () => {
@@ -87,7 +98,7 @@ const Header = () => {
 
     try {
       const response = await axios.post(
-        "https://opinion-be.onrender.com/payment/create-order",
+        "https://opinion-fe.onrender.com/payment/create-order",
         data
       );
       console.log(response.data);
@@ -95,6 +106,51 @@ const Header = () => {
     } catch (error) {
       console.log("error in payment", error);
     }
+  };
+
+  // Handle withdrawal process
+  const handleWithdraw = async () => {
+    const data = {
+      name: `${userDetails.fullname}`,
+      email: userDetails.email,
+      amount: withdrawAmount,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://opinion-fe.onrender.com/withdraw",
+        data
+      );
+
+      // Check if the response message is "Withdrawal successful"
+      if (response.data.message === "Withdrawal successful") {
+        setWithdrawModalOpen(false);
+          setIsModalOpen(false);
+        setLoadingModalOpen(true);
+       
+        // Use setTimeout for a 2-second delay
+        setTimeout(() => {
+          
+          setLoadingModalOpen(false);
+            setModalMessage("Your withdraw has been successful. The Money will be processed within 2-3 working days.");
+            setIsModalWithdrawOpen(true); // Show the modal
+    
+            setWalletBalance(prev => prev - withdrawAmount); // Update wallet balance
+        }, 2000); // 2000 milliseconds = 2 seconds
+    }
+     else {
+        
+        setLoadingModalOpen(false);
+      }
+
+    } catch (error) {
+      console.log("error in withdrawal", error);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalWithdrawOpen(false);
+    setModalMessage("");
   };
 
   // Handle dropdown toggle
@@ -120,7 +176,6 @@ const Header = () => {
         </div>
 
         {/* Center Section */}
-        {/* Center Section */}
         <div className="flex items-center justify-center w-1/3 cursor-pointer">
           <button
             onClick={() => navigate('/confirmedBets')}
@@ -145,7 +200,6 @@ const Header = () => {
           </button>
         </div>
 
-
         {/* Right Section */}
         <div className="relative flex items-center justify-end w-1/3">
           <h1 className="text-2xl">Mr. {userDetails['fullname']}! &nbsp;</h1>
@@ -155,19 +209,12 @@ const Header = () => {
             className="h-14 cursor-pointer"
             onClick={toggleDropdown} // Handle dropdown toggle on click
           />
-          
         </div>
 
         {/* Dropdown */}
         {isDropdownOpen && (
           <div className="right-2 absolute mt-36 w-48 bg-white rounded-lg shadow-lg z-50">
             <ul className="text-black">
-              {/* <li
-                className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
-                onClick={() => navigate('/profile')}
-              >
-                Profile
-              </li> */}
               <li
                 className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
                 onClick={handleLogout}
@@ -186,6 +233,7 @@ const Header = () => {
         title="Deposit / Withdraw"
         type="depositWithdraw"
         handleDepositModalOpen={handleDepositModalOpen}
+        handleWithdrawModalOpen={handleWithdrawModalOpen} // Add this prop
       />
 
       {/* Deposit Modal to collect amount */}
@@ -198,6 +246,54 @@ const Header = () => {
         setDepositAmount={setDepositAmount}
         handlePayment={handlePayment}
       />
+
+      {/* Withdraw Modal to collect amount */}
+      <Modal
+        isOpen={withdrawModalOpen}
+        onClose={handleWithdrawModalClose}
+        title="Enter Withdraw Amount"
+        type="enterWithdrawAmount"
+        withdrawAmount={withdrawAmount}
+        setWithdrawAmount={setWithdrawAmount}
+        handleWithdraw={handleWithdraw} // Add this prop
+      />
+
+      {isModalWithdrawOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" style={{ zIndex: 50 }}>
+          <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm text-center relative" style={{ zIndex: 50 }}>
+            <img
+              src={refundImage} // Replace with your image URL
+              alt="Confirmation Icon"
+              className="w-34 h-32 mx-auto mb-4"
+            />
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">Withdraw Successful</h3>
+            <p className="text-gray-600 mb-6">{modalMessage}</p>
+            <button
+              onClick={closeModal}
+              className="bg-gradient-to-r from-green-600 to-green-500 text-white py-2 px-4 rounded-lg hover:from-green-700 hover:to-green-500 shadow-md transition-all duration-200"
+            >
+              Close
+            </button>
+            <div className="absolute top-1 right-3 cursor-pointer" onClick={closeModal}>
+              <span className="text-gray-500 hover:text-gray-700 text-2xl">&times;</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+{loadingModalOpen && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" style={{ zIndex: 50 }}>
+    <div className="bg-white p-10 rounded-lg shadow-2xl max-w-md text-center relative border border-gray-200" style={{ zIndex: 50 }}>
+      <h3 className="text-2xl font-bold text-gray-800 mb-6">Processing Withdrawal</h3>
+      <div className="flex justify-center items-center">
+        <div className="w-16 h-16 border-4 border-gray-300 border-t-transparent border-t-blue-500 rounded-full animate-spin"></div>
+      </div>
+      <p className="mt-4 text-gray-600 text-sm">Please wait while we process your request.</p>
+    </div>
+  </div>
+)}
+
+
     </>
   );
 };
