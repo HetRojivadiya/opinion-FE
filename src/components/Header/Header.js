@@ -216,7 +216,7 @@ const Header = () => {
           <div className="right-2 absolute mt-36 w-48 bg-white rounded-lg shadow-lg z-50">
             <ul className="text-black">
               <li
-                className="px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+                className="px-4 logoutTest py-2 hover:bg-gray-100 rounded-lg cursor-pointer"
                 onClick={handleLogout}
               >
                 Logout
