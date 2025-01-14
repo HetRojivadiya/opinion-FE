@@ -169,7 +169,7 @@ const Header = () => {
       <header className="bg-black text-white p-4 flex items-center">
         {/* Left Section */}
         <div className="flex items-center justify-start w-1/3">
-          <img src={CompanyLogo} alt="Company Logo" className="h-16" />
+          <img src={CompanyLogo} alt="Company Logo" className="h-16 homeTest" />
           <h1 className="text-2xl md:text-2xl lg:text-3xl ml-2 hide-on-small">
             Opinion
           </h1>
