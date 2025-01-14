@@ -155,7 +155,7 @@ const AuthForm = ({ onLogin }) => {
             </label>
             <input
               type="email"
-              name="email"  // Add name attribute for Selenium
+              name="text"  // Add name attribute for Selenium
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={`w-full p-2 border ${
