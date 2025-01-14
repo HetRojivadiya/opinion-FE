@@ -95,110 +95,102 @@ const AuthForm = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105" data-testid="auth-form">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
         <div className="flex justify-center rounded-sm">
-          <img src={Logo} alt="Logo" className="h-24 rounded-full" data-testid="logo" />
+          <img src={Logo} alt="Logo" className="h-24 rounded-full" />
         </div>
-        <h2 className="text-2xl font-bold text-center mb-2 text-black" data-testid="form-title">
+        <h2 className="text-2xl font-bold text-center mb-2 text-black">
           {isLogin ? "Login" : "Signup to create an account"}
         </h2>
         <div className="mb-8 text-center">
           <p
             className="text-black cursor-pointer hover:underline"
             onClick={() => setIsLogin(!isLogin)}
-            data-testid="toggle-auth-form"
           >
             {isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"}
           </p>
         </div>
-        <form onSubmit={handleSubmit} data-testid="auth-form-submit">
+        <form onSubmit={handleSubmit}>
           {!isLogin && (
             <>
-              <div className="mb-4" data-testid="username-field">
+              <div className="mb-4">
                 <label className="block text-black text-sm font-bold mb-2">
                   Username
                 </label>
                 <input
                   type="text"
+                  name="username"  // Add name attribute
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className={`w-full p-2 border ${
                     errors.username ? "border-red-500" : "border-gray-300"
                   } rounded focus:outline-none focus:border-black`}
-                  data-testid="username-input"
                 />
                 {errors.username && (
-                  <p className="text-red-500 text-xs italic" data-testid="username-error">
-                    {errors.username}
-                  </p>
+                  <p className="text-red-500 text-xs italic">{errors.username}</p>
                 )}
               </div>
-              <div className="mb-4" data-testid="fullname-field">
+              <div className="mb-4">
                 <label className="block text-black text-sm font-bold mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
+                  name="fullname"  // Add name attribute
                   value={fullname}
                   onChange={(e) => setFullname(e.target.value)}
                   className={`w-full p-2 border ${
                     errors.fullname ? "border-red-500" : "border-gray-300"
                   } rounded focus:outline-none focus:border-black`}
-                  data-testid="fullname-input"
                 />
                 {errors.fullname && (
-                  <p className="text-red-500 text-xs italic" data-testid="fullname-error">
-                    {errors.fullname}
-                  </p>
+                  <p className="text-red-500 text-xs italic">{errors.fullname}</p>
                 )}
               </div>
             </>
           )}
-          <div className="mb-4" data-testid="email-field">
+          <div className="mb-4">
             <label className="block text-black text-sm font-bold mb-2">
               Email
             </label>
             <input
               type="email"
+              name="email"  // Add name attribute for Selenium
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={`w-full p-2 border ${
                 errors.email ? "border-red-500" : "border-gray-300"
               } rounded focus:outline-none focus:border-black`}
-              data-testid="email-input"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs italic" data-testid="email-error">
-                {errors.email}
-              </p>
+              <p className="text-red-500 text-xs italic">{errors.email}</p>
             )}
           </div>
-          <div className="mb-4" data-testid="password-field">
+          <div className="mb-4">
             <label className="block text-black text-sm font-bold mb-2">
               Password
             </label>
             <input
               type="password"
+              name="password"  // Add name attribute for Selenium
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={`w-full p-2 border ${
                 errors.password ? "border-red-500" : "border-gray-300"
               } rounded focus:outline-none focus:border-black`}
-              data-testid="password-input"
             />
             {errors.password && (
-              <p className="text-red-500 text-xs italic" data-testid="password-error">
-                {errors.password}
-              </p>
+              <p className="text-red-500 text-xs italic">{errors.password}</p>
             )}
           </div>
           {!isLogin && (
-            <div className="mb-4" data-testid="confirm-password-field">
+            <div className="mb-4">
               <label className="block text-black text-sm font-bold mb-2">
                 Confirm Password
               </label>
               <input
                 type="password"
+                name="confirmPassword"  // Add name attribute for Selenium
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className={`w-full p-2 border ${
@@ -206,25 +198,21 @@ const AuthForm = ({ onLogin }) => {
                     ? "border-red-500"
                     : "border-gray-300"
                 } rounded focus:outline-none focus:border-black`}
-                data-testid="confirm-password-input"
               />
               {errors.confirmPassword && (
-                <p className="text-red-500 text-xs italic" data-testid="confirm-password-error">
+                <p className="text-red-500 text-xs italic">
                   {errors.confirmPassword}
                 </p>
               )}
             </div>
           )}
           {errors.form && (
-            <p className="text-red-500 text-xs italic mb-4" data-testid="form-error">
-              {errors.form}
-            </p>
+            <p className="text-red-500 text-xs italic mb-4">{errors.form}</p>
           )}
           <div className="flex items-center justify-between">
             <button
               type="submit"
               className="w-full bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition-colors"
-              data-testid="submit-button"
             >
               {isLogin ? "Login" : "Sign Up"}
             </button>
