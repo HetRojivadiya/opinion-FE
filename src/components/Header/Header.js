@@ -206,7 +206,7 @@ const Header = () => {
           <img
             src={AccountLogo}
             alt="Account Logo"
-            className="h-14 cursor-pointer"
+            className="h-14 userTest cursor-pointer"
             onClick={toggleDropdown} // Handle dropdown toggle on click
           />
         </div>
