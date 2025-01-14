@@ -163,7 +163,7 @@ const AuthForm = ({ onLogin }) => {
               } rounded focus:outline-none focus:border-black`}
             />
             {errors.email && (
-              <p className="text-red-500 text-xs italic">{errors.email}</p>
+              <p className="text-red-500 emailError text-xs italic">{errors.email}</p>
             )}
           </div>
           <div className="mb-4">
@@ -180,7 +180,7 @@ const AuthForm = ({ onLogin }) => {
               } rounded focus:outline-none focus:border-black`}
             />
             {errors.password && (
-              <p className="text-red-500 text-xs italic">{errors.password}</p>
+              <p className="text-red-500 passwordError text-xs italic">{errors.password}</p>
             )}
           </div>
           {!isLogin && (
