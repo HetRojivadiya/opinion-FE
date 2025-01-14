@@ -171,7 +171,7 @@ const AuthForm = ({ onLogin }) => {
               Password
             </label>
             <input
-              type="password"
+              type="text"
               name="password"  // Add name attribute for Selenium
               value={password}
               onChange={(e) => setPassword(e.target.value)}
