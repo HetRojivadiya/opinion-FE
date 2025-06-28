@@ -165,10 +165,7 @@ const Header = () => {
   };
 
   return (
-    <><div className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white text-center py-2 font-bold animate-pulse z-50 fixed top-0 left-0">
-    🚨 Shaily Saxena - Do Not Touch My Website 🚨
-  </div>
-
+    <>
       <header className="bg-black text-white p-4 flex items-center">
         {/* Left Section */}
         <div className="flex items-center justify-start w-1/3">
